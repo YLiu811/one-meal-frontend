@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide} from "@splidejs/react-splide";
-import "@splidejs/splide/dist/css/splide.min.css";
+import '@splidejs/react-splide/css';
 
 function Popular() {
     // const URL = "https://api.spoonacular.com/recipes/random?";
@@ -26,9 +26,16 @@ function Popular() {
     // });
     // };
     const getPopular = async () => {
-        const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&number=6')
-        const res = await api.json();
-        setPopular(res.recipes);
+        const checkPop = localStorage.getItem('popular');
+        if (checkPop) {
+            setPopular(JSON.parse(checkPop));
+        } else {
+            const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&number=6')
+            const res = await api.json();
+            localStorage.setItem('popular', JSON.stringify(res.recipes))
+            setPopular(res.recipes);
+            console.log(res.recipes)
+        }
     };
 
     return (
@@ -37,10 +44,9 @@ function Popular() {
                 <h3>Editor's Popular Pick</h3>
                 <Splide options={{
                     perPage: 3,
-                    arrows: false,
                     pagination: false,
-                    drag: "free",
-                    gap: "3rem",
+                    // drag: 'free',
+                    gap: '6rem',
                 }}>
                     {popular.map((recipe) => {
                         return(
@@ -77,8 +83,11 @@ function Popular() {
             object-fit: cover;
         }
         p{
-            div(first: TemplateStringArray):
-            StyledComponent<"div",any, {},never>
+            position: absolute;
+            z-index: 10;
+            left: 50%;
+            bottom: 0%;
+            transform: trasnlate(-50%, 0%);
             color: white;
             width: 100%;
             text-align: center;
@@ -95,7 +104,7 @@ function Popular() {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4))
+        background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4));
     `;
 
 
