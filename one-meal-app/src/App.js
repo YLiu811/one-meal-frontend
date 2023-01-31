@@ -27,7 +27,9 @@ function App() {
     }
   };
   useEffect(fetchUser, []);
-  return (
+  // const URL = "http://127.0.0.1:5000/user";
+
+git  return (
     <div className="App">
       {/* <header className="App-header">One-Meal</header> */}
       {/* <h1> One Meal </h1> */}
@@ -60,6 +62,7 @@ function App() {
           }
         />
       </Routes>
+      <Pages />
     </div>
   );
 }
