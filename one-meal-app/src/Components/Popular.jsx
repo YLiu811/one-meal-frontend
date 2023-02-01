@@ -16,7 +16,7 @@ function Popular() {
     // const getPopular = () => {
     //     axios
     //     // .get(`${URL}apiKey=${process.env.API_KEY}&number=6`)
-    //     .get('https://api.spoonacular.com/recipes/random?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&number=6')
+    //     .get('https://api.spoonacular.com/recipes/random?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&number=18')
     //     .then((res) => {
     //         console.log(res);
     //         setPopular(res.recipes);
