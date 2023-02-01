@@ -1,12 +1,15 @@
 import React from 'react'
-import Home from './Home'
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import Home from './Home';
+import Searched from './Searched';
 
 function Pages() {
     return (
-        <div>
-            <Home />
-        </div>
-    )
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/searched/input" element={<Searched />} />
+        </Routes>
+    );
 }
 
 export default Pages;

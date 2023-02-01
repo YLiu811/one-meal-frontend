@@ -1,5 +1,7 @@
 import "./App.css";
+import { BrowserRouter } from "react-router-dom";
 import Pages from "./pages/Pages";
+import Search from "./Components/Search";
 
 function App() {
   // const URL = "http://127.0.0.1:5000/user";
@@ -8,7 +10,10 @@ function App() {
     <div className="App">
       {/* <header className="App-header">One-Meal</header> */}
       {/* <h1> One Meal </h1> */}
-      <Pages />
+      <BrowserRouter>
+        <Search />
+        <Pages />
+      </BrowserRouter>
     </div>
   );
 }
