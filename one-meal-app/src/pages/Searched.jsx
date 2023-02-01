@@ -12,7 +12,7 @@ function Searched() {
         if (checkRecipe) {
             setSearchedFood(JSON.parse(checkRecipe));
         } else {
-            const api = await fetch('https://api.spoonacular.com/recipes//complexSearch?apiKey=b7a6c9d38b904685a82e32c6e9ebc999')
+            const api = await fetch('https://api.spoonacular.com/recipes/complexSearch?apiKey=b7a6c9d38b904685a82e32c6e9ebc999')
             const res = await api.json();
             localStorage.setItem('searchedFood', JSON.stringify(res.recipes))
             setSearchedFood(res.recipes);
