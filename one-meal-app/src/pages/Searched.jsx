@@ -51,8 +51,9 @@ const Card = styled.div`
     position: relative;
     img {
         width: 100%;
-        height: 100%;
-        border-radius: 1rem;
+        display: block;
+        border-radius: 1.6rem;
+        padding: 0;
     }
     a {
         text-decoration: none;
