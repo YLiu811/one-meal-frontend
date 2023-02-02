@@ -1,43 +1,36 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
 import "./Form.css";
+import axios from "axios";
 
-export const Signup = (props) => {
-  const [name, setName] = useState("");
+export const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const submitForm = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/user/signup`, {
-        name,
+      .post(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
         email,
         password,
       })
-      .then((response) => {
-        console.log(response);
-        props.setUser(response.data);
-        localStorage.setItem("userId", response.data.id);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("USER Exist");
+      .then(
+        (response) => {
+          console.log(response);
+          props.setUser(response.data);
+          localStorage.setItem("userId", response.data.user_id);
+        },
+        [props.user]
+      )
+      .catch((err) => {
+        console.log(err);
+        // setError(err.response.data.message)
+        alert("NO USER");
       });
   };
   return (
     <div>
       <form onSubmit={submitForm}>
-        <h2>Sign Up</h2>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          placeholder="User Name"
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-        />
+        <h2>Log In</h2>
         <input
           type="text"
           name="email"
@@ -56,8 +49,9 @@ export const Signup = (props) => {
             setPassword(e.target.value);
           }}
         />
-        <input type="submit" value="Sign Up" />
+        <input type="submit" value="Log In" />
       </form>
     </div>
   );
 };
+export default Login;
