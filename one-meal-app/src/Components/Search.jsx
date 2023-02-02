@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Search() {
+    console.log('search bar is working');
     const [input, setInput] = useState("")
     const navigate = useNavigate();
 
