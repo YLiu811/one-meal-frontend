@@ -1,5 +1,5 @@
 import React from 'react'
-// import axios from "axios";
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide} from "@splidejs/react-splide";
@@ -12,25 +12,12 @@ function Popular() {
         getPopular();
     },[]);
 
-    // const axios = require('axios');
-    // const getPopular = () => {
-    //     axios
-    //     // .get(`${URL}apiKey=${process.env.API_KEY}&number=6`)
-    //     .get('https://api.spoonacular.com/recipes/random?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&number=18')
-    //     .then((res) => {
-    //         console.log(res);
-    //         setPopular(res.recipes);
-    // })
-    //     .catch((err) => {
-    //     console.log(err);
-    // });
-    // };
     const getPopular = async () => {
         const checkPop = localStorage.getItem('popular');
         if (checkPop) {
             setPopular(JSON.parse(checkPop));
         } else {
-            const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&number=18')
+            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=18`)
             const res = await api.json();
             localStorage.setItem('popular', JSON.stringify(res.recipes))
             setPopular(res.recipes);
@@ -54,9 +41,11 @@ function Popular() {
                         return(
                             <SplideSlide key={recipe.id}>
                                 <Card>
-                                    <p>{recipe.title}</p>
-                                    <img src={recipe.image} alt={recipe.title} />
-                                    <Gradient />
+                                    <Link to={`/recipe/${recipe.id}`}>
+                                        <p>{recipe.title}</p>
+                                        <img src={recipe.image} alt={recipe.title} />
+                                        <Gradient />
+                                    </Link>
                                 </Card>
                             </SplideSlide>
                         );

@@ -11,7 +11,7 @@ function Recipe() {
     const [recipe, setRecipe] = useState({});
 
     const getRecipe = async () => {
-        const api = await fetch(`${URL}${params.id}/information?apiKey=b7a6c9d38b904685a82e32c6e9ebc999`)
+        const api = await fetch(`${URL}${params.id}/information?apiKey=88cbb41354b04d13858d7f377e338113`)
         const res = await api.json();
         console.log(res);
         setRecipe(res);
