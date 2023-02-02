@@ -34,14 +34,14 @@ function Popular() {
             const res = await api.json();
             localStorage.setItem('popular', JSON.stringify(res.recipes))
             setPopular(res.recipes);
-            console.log(res.recipes)
+            console.log(res.recipes);
         }
     };
 
     return (
         <div>
             <Wrapper>
-                <h3>Editor's Popular Pick</h3>
+                <h2>Editor's Popular Pick</h2>
                 <Splide options={{
                     type: 'loop',
                     perPage: 3,
