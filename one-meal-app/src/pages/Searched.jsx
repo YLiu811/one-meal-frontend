@@ -4,22 +4,23 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Searched() {
+    console.log("searched page is called")
     const [searchedFood, setSearchedFood] = useState([]);
     const params = useParams();
     
     const getResult = async (keyword) => {
-        const checkRecipe = localStorage.getItem('searchedFood');
-        console.log(checkRecipe);
+        // const checkRecipe = localStorage.getItem('searchedFood');
+        // console.log(checkRecipe);
         // if (checkRecipe) {
         //     setSearchedFood(JSON.parse(checkRecipe));
         // } else {
-        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&query=${keyword}&number=15`)
+        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=88cbb41354b04d13858d7f377e338113&query=${keyword}&number=18`)
         const res = await api.json();
         // localStorage.setItem('searchedFood', JSON.stringify(res.recipes))
         setSearchedFood(res.results);
         console.log(res.results);
-        };
-        
+    };
+    
     useEffect(() => {
         getResult(params.input);
     }, [params.input]);
