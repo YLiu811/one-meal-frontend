@@ -14,8 +14,10 @@ function Recipe() {
     const getRecipe = async () => {
         const api = await fetch(`${URL}${params.id}/information?apiKey=88cbb41354b04d13858d7f377e338113`)
         const res = await api.json();
-        console.log(res);
+        // console.log(res);
         setRecipe(res);
+        console.log(res.summary);
+        console.log(res.instructions);
     };
 
     useEffect(() => {
@@ -30,20 +32,24 @@ function Recipe() {
             </div>
             <Info>
                 <Button className={active === 'Ingredients' ? 'active' : ''} onClick={() => setActive('Ingredients')}>Ingredients</Button>
-                <Button className={active === 'Instructions'?' active' : ''} onClick={() => setActive('Instructions')}>Instructions</Button>
-                {/* {active === 'Instructions' && (
-                    <div>
-                        <h3 dangerouslySetInnerHTML={{__html: recipe.summary}}></h3>
-                        <h3 dangerouslySetInnerHTML={{__html: recipe.instructions}}></h3>
-                    </div>
-                )} */}
-                {/* {active === 'Ingredients' && (
-                    <ul>
-                        {recipe.extendedIngredients.map((ingredient) => 
-                            <li key={ingredient.id}>{ingredient.original}</li>
+                <Button className={active === 'Instructions' ? 'active' : ''} onClick={() => setActive('Instructions')}>Instructions</Button>
+                {/* <h3 dangerouslySetInnerHTML={{__html: recipe.summary}}></h3> */}
+                {/* <h3 dangerouslySetInnerHTML={{__html: recipe.instructions}}></h3> */}
+                <div>
+                    {active === 'Instructions' && (
+                        <div>
+                            <h3 dangerouslySetInnerHTML={{__html: recipe.summary}}></h3>
+                            <h3 dangerouslySetInnerHTML={{__html: recipe.instructions}}></h3>
+                        </div>
+                    )}
+                    {active === 'Ingredients' && (
+                        <ul>
+                        {recipe.extendedIngredients?.map((detail) => 
+                            <li key={detail.id}>{detail.original}</li>
                         )}
-                    </ul>
-                )} */}
+                        </ul>
+                    )}
+                </div>
             </Info>
         </RecipeWrapper>
     );

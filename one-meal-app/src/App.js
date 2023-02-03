@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
-import Pages from "./pages/Pages";
+import Home from "./pages/Home";
 import UserPage from "./Components/UserPage";
 
 function App() {
@@ -10,7 +10,6 @@ function App() {
       <BrowserRouter>
         {/* <header className="App-header">One-Meal</header> */}
         <UserPage />
-        <Pages />
       </BrowserRouter>
     </div>
   );
