@@ -1,47 +1,49 @@
 import React from 'react'
+import axios from "axios";
 // import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import Favorite from '../Components/Favorite';
 
-function Searched() {
-    console.log("searched page is called")
-    const [searchedFood, setSearchedFood] = useState([]);
-    const params = useParams();
-    
-    const getResult = async (keyword) => {
-        // const checkRecipe = localStorage.getItem('searchedFood');
-        // console.log(checkRecipe);
-        // if (checkRecipe) {
-        //     setSearchedFood(JSON.parse(checkRecipe));
-        // } else {
-        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=88cbb41354b04d13858d7f377e338113&query=${keyword}&number=18`)
-        const res = await api.json();
-        // localStorage.setItem('searchedFood', JSON.stringify(res.recipes))
-        setSearchedFood(res.results);
-        console.log(res.results);
+function Favorites() {
+    console.log("Favorites page is called")
+    const [Favorites, setFavorites] = useState([]);
+
+    const getFaves = () => {
+        const userId = localStorage.getItem("userId");
+        if (userId) {
+            axios
+            .get(`${process.env.REACT_APP_BACKEND_URL}/favorites`)
+            .then((response) => {
+                console.log(response);
+                const favesAPIResCopy = response.data.map((fave) => {
+                return {
+                    ...fave,
+                };
+            });
+            setFavorites(favesAPIResCopy);
+        })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
     };
-    
-    useEffect(() => {
-        getResult(params.input);
-    }, [params.input]);
+    useEffect(getFaves, []);
 
     return (
         <div>
-            <h2>Recommended Recipes</h2>
+            <h2>Your Favorites</h2>
             <Grid>
-                {searchedFood.map((recipe) => {
+                {Favorites.map((recipe) => {
                     return(
                         <Card key={recipe.id}>
-                            <div className='container'>
-                                <div className='overlay'>
-                                    <h4>{recipe.title}</h4>
-                                    <Favorite />
-                                </div>
+                            <div className='overlay'>
+                                <h4>{recipe.title}</h4>
                             </div>
                             <a href={`/recipe/${recipe.id}`}>
-                                <img src={recipe.image} alt={recipe.title} />
+                                <div className='container'>
+                                    <img src={recipe.image} alt={recipe.title} />
+                                    <div className='overlay'></div>
+                                </div>
                             </a>
                         </Card>
                     )
@@ -98,4 +100,4 @@ const Card = styled.div`
     }
 `;
 
-export default Searched;
+export default Favorites;

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide} from "@splidejs/react-splide";
 import '@splidejs/react-splide/css';
+import Favorite from './Favorite';
 
 function Popular() {
     // const URL = "https://api.spoonacular.com/recipes/random?";
@@ -41,11 +42,14 @@ function Popular() {
                         return(
                             <SplideSlide key={recipe.id}>
                                 <Card>
-                                    <Link to={`/recipe/${recipe.id}`}>
+                                    <Favorite />
+                                    <div className='overlay'>
+                                        <Link to={`/recipe/${recipe.id}`}>
                                         <p>{recipe.title}</p>
                                         <img src={recipe.image} alt={recipe.title} />
                                         <Gradient />
-                                    </Link>
+                                        </Link>
+                                    </div>
                                 </Card>
                             </SplideSlide>
                         );
@@ -65,6 +69,7 @@ function Popular() {
         border-radius: 2rem;
         overflow: hidden;
         position: relative;
+        padding: 1rem;
 
         img{
             border-radius: 2rem;
@@ -89,6 +94,30 @@ function Popular() {
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        img-container = {
+            position: relative;
+            justify-content: start;
+            transition: transform 0.2s;
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.1);
+        }
+        img-container:hover .overlay{
+            opacity: 1;
+        }
+        overlay = {
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            background: #FF8474;
+            width: 100%;
+            transition: 0.5s ease;
+            opacity: 0;
+            bottom: 0;
+            font-size: 1.2rem;
+            padding: 0.5;
+            text-align: center;
         }
     `;
     const Gradient = styled.div`

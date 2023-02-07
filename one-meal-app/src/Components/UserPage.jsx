@@ -13,6 +13,7 @@ import Recipe from "../pages/Recipe";
 function UserPage() {
   console.log(process.env.REACT_APP_API_KEY)
   const [user, setUser] = useState({});
+  
   const fetchUser = () => {
     const userId = localStorage.getItem("userId");
     if (userId) {
@@ -33,11 +34,11 @@ function UserPage() {
     }
   };
   useEffect(fetchUser, []);
+  
   return (
     <div className="App">
       {/* <header className="App-header">One-Meal</header> */}
       <h1> Hi {user.email} </h1>
-      {/* <Pages /> */}
       <NavBar userProp={user} setUser={setUser} />
       <Routes>
         <Route path="*" element={<Login userProp={user} setUser={setUser} />} />
@@ -72,6 +73,7 @@ function UserPage() {
           }
         />
       </Routes>
+      <Home />
     </div>
   );
 }
