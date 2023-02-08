@@ -30,6 +30,22 @@ body {
   background-color: #FFF7EE;
 }
 
+img {
+  transition: all 0.2s ease-in-out;
+  margin: 0.5rem;
+}
+
+img:hover {
+  transform: scale(1.08);
+}
+
+nav {
+  display: inline-block;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
 h4 {
   font-size: 1.5rem;
   color: #36474F;

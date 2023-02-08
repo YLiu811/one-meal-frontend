@@ -1,11 +1,12 @@
-. {
+.user {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh; 
-    padding: 1rem 0.5rem;
-    }
+    padding: 1.5rem;
+}
+
 div {
     text-align: center;
 }
@@ -28,17 +29,18 @@ form {
     justify-content: space-evenly;
     flex-grow: 1;
     padding-bottom: 1rem;
-    }
-form * {
-    margin: 15px 80px;
+    border: 1rem;
 }
+form * {
+    margin: 1rem 80px;
+}
+
 a, a:visited {
 color: #A3A0CB;
 }
-
 textarea {
 font-family: 'Nunito', sans-serif;
-font-size: 22px;
+font-size: 28px;
 padding: 0.25rem;
 border-radius: 0.5rem;
 }

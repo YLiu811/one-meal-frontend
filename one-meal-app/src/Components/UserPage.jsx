@@ -37,9 +37,9 @@ function UserPage() {
   useEffect(fetchUser, []);
   
   return (
-    <div>
+    <div className='user'>
       <h1> Hi {user.name} </h1>
-      <NavBar userProp={user} setUser={setUser} />
+      <NavBar className='nav' userProp={user} setUser={setUser} />
       <Routes>
         <Route path="*" element={<Login userProp={user} setUser={setUser} />} />
         <Route
