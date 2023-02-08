@@ -37,43 +37,45 @@ function UserPage() {
   useEffect(fetchUser, []);
   
   return (
-    <div className='user'>
-      <h1> Hi {user.name} </h1>
-      <NavBar className='nav' userProp={user} setUser={setUser} />
-      <Routes>
-        <Route path="*" element={<Login userProp={user} setUser={setUser} />} />
-        <Route
-          path="/home"
-          element={<Home userProp={user} setUser={setUser} />}
-        />
-        <Route
-          path="/pages"
-          element={<Pages userProp={user} setUser={setUser} />}
-        />
-        <Route path="/searched/:input" element={<Searched />} />
-        <Route path ="/recipe/:id" element={<Recipe />} />
-        <Route
-          path="/signup"
-          element={
-            user.user_id ? (
-              <Navigate to="/home" />
-            ) : (
-              <Signup userProp={user} setUser={setUser} />
-            )
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            user.user_id ? (
-              <Navigate to="/home" />
-            ) : (
-              <Login userProp={user} setUser={setUser} />
-            )
-          }
-        />
-      </Routes>
-      {/* <Home /> */}
+    <div>
+        <div>
+          <h1> Hi {user.name} </h1>
+          <NavBar className='nav' userProp={user} setUser={setUser} />
+          <Routes>
+            <Route path="*" element={<Login userProp={user} setUser={setUser} />} />
+            <Route
+              path="/home"
+              element={<Home userProp={user} setUser={setUser} />}
+            />
+            <Route
+              path="/pages"
+              element={<Pages userProp={user} setUser={setUser} />}
+            />
+            <Route path="/searched/:input" element={<Searched />} />
+            <Route path ="/recipe/:id" element={<Recipe />} />
+            <Route
+              path="/signup"
+              element={
+                user.user_id ? (
+                  <Navigate to="/home" />
+                ) : (
+                  <Signup userProp={user} setUser={setUser} />
+                )
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                user.user_id ? (
+                  <Navigate to="/home" />
+                ) : (
+                  <Login userProp={user} setUser={setUser} />
+                )
+              }
+            />
+          </Routes>
+          {/* <Home /> */}
+      </div>
     </div>
   );
 }

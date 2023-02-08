@@ -25,14 +25,16 @@ function Search() {
 };
 
 const FormStyle = styled.form`
-    margin: 4rem 4rem;
+    margin: 4rem 4rem 4rem 0;
     div {
-        width: 180%;
+        width: 100%;
+        margin-left: 0;
+        // padding-left: 1rem;
         position: relative;
     }
     
     input {
-        width: 100%;
+        width: 82%;
         border: none;
         background: linear-gradient(-35deg, #FFC0B9, #FF8474);
         font-size: 1.6rem;

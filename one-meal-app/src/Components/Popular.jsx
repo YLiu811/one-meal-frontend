@@ -43,12 +43,10 @@ function Popular() {
                             <SplideSlide key={recipe.id}>
                                 <Card>
                                     <Favorite />
-                                    <div className='overlay'>
                                         <Link to={`/recipe/${recipe.id}`}>
                                         <p>{recipe.title}</p>
                                         <img src={recipe.image} alt={recipe.title} />
                                         </Link>
-                                    </div>
                                 </Card>
                             </SplideSlide>
                         );
@@ -105,19 +103,6 @@ function Popular() {
         }
         img-container:hover .overlay{
             opacity: 1;
-        }
-        overlay = {
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            background: #FF8474;
-            width: 100%;
-            transition: 0.5s ease;
-            opacity: 0;
-            bottom: 0;
-            font-size: 1.2rem;
-            padding: 0.5;
-            text-align: center;
         }
     `;
 

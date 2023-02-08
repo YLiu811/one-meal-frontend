@@ -29,8 +29,9 @@ function Searched() {
 
     return (
         <div>
-            <h2>Recommended Recipes</h2>
-            <Grid>
+            <Title>Recommended Recipes</Title>
+            <div className='searched'>
+                <Grid>
                 {searchedFood.map((recipe) => {
                     return(
                         <Card key={recipe.id}>
@@ -46,15 +47,21 @@ function Searched() {
                         </Card>
                     )
                 })}
-            </Grid>
+                </Grid>
+            </div>
         </div>
     )
 }
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 0.65fr));
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 0.65fr));
     grid-gap: 3rem;
+    margin-left: 0;
+    padding-left: 0;
 `;
+const Title = styled.h2`
+    display: inline-block;
+`
 const Card = styled.div`
     position: relative;
     img {
@@ -66,8 +73,9 @@ const Card = styled.div`
         text-decoration: none;
     }
     h4 {
-        postion: block;
-        font-size: 1.2em;
+        postion: inline-block;
+        font-size: 1.1em;
+        line-height: 1.2em;
         text-align: center;
         vertical-align: middle;
         padding: 1.2rem 0 0;
