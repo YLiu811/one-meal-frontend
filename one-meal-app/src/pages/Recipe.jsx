@@ -13,7 +13,7 @@ function Recipe() {
     const [active, setActive] = useState('Ingredients');
 
     const getRecipe = async () => {
-        const api = await fetch(`${URL}${params.id}/information?apiKey=88cbb41354b04d13858d7f377e338113`)
+        const api = await fetch(`${URL}${params.id}/information?apiKey=b7a6c9d38b904685a82e32c6e9ebc999`)
         const res = await api.json();
         // console.log(res);
         setRecipe(res);
@@ -100,6 +100,7 @@ function Recipe() {
 }
 
 const RecipeWrapper = styled.div`
+    margin-left: 0;
     margin-top: 2rem;
     margin-bottom: 6rem;
     display: flex;
@@ -107,15 +108,21 @@ const RecipeWrapper = styled.div`
         background-color: linear-gradient(35deg, #FFC0B9, #FF8474);
         color: #8FDF83;
     }
-    h2{
+    h3{
         margin-bottom: 2rem;
+        line-height: 1.5rem;
+        margin-left: 4.5rem;
+        text-align: left;
     }
     li{
         font-size: 1.2rem;
         line-height: 2.5rem;
+        margin-left: 3.5rem;
+        text-align: left;
     }
     ul{
         margin-top: 2rem;
+        margin-left: 2rem;
     }
 `
 const Button = styled.div`
