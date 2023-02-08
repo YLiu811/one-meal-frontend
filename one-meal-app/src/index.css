@@ -19,6 +19,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+html {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  color: #36474F;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #FFF7EE;
+}
 
 h4 {
   font-size: 1.5rem;

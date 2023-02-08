@@ -25,9 +25,9 @@ function Search() {
 };
 
 const FormStyle = styled.form`
-    margin: 6rem 8rem;
+    margin: 4rem 4rem;
     div {
-        width: 100%;
+        width: 180%;
         position: relative;
     }
     
@@ -44,8 +44,8 @@ const FormStyle = styled.form`
     }
     svg {
         position: absolute;
-        top: 40%;
-        left: 3%;
+        top: 30%;
+        left: 4%;
         transform: translate(100%, -50%)
         color: #F0F7EF;
     }

@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Components/UserPage.css';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Login from '../pages/Login';
@@ -36,9 +37,8 @@ function UserPage() {
   useEffect(fetchUser, []);
   
   return (
-    <div className="App">
-      {/* <header className="App-header">One-Meal</header> */}
-      <h1> Hi {user.email} </h1>
+    <div>
+      <h1> Hi {user.name} </h1>
       <NavBar userProp={user} setUser={setUser} />
       <Routes>
         <Route path="*" element={<Login userProp={user} setUser={setUser} />} />
@@ -66,14 +66,14 @@ function UserPage() {
           path="/login"
           element={
             user.user_id ? (
-              <Navigate to="/pages" />
+              <Navigate to="/home" />
             ) : (
               <Login userProp={user} setUser={setUser} />
             )
           }
         />
       </Routes>
-      <Home />
+      {/* <Home /> */}
     </div>
   );
 }

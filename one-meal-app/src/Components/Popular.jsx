@@ -47,7 +47,6 @@ function Popular() {
                                         <Link to={`/recipe/${recipe.id}`}>
                                         <p>{recipe.title}</p>
                                         <img src={recipe.image} alt={recipe.title} />
-                                        <Gradient />
                                         </Link>
                                     </div>
                                 </Card>
@@ -61,6 +60,7 @@ function Popular() {
 };
     const Wrapper = styled.div`
         margin: 6rem 1rem;
+        padding: 1.2rem;
         border-style: ridge;
     `;
 
@@ -120,13 +120,5 @@ function Popular() {
             text-align: center;
         }
     `;
-    const Gradient = styled.div`
-        z-index: 3;
-        position: absolute;
-        width: 100%;
-        height: 125%;
-        background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4));
-    `;
-
 
 export default Popular;

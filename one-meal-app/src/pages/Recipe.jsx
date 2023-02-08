@@ -66,19 +66,17 @@ function Recipe() {
     return (
         <RecipeWrapper>
             <div>
+                <div className="buttonContainer">
+                    <Button onClick={() => addFave('Add to Favorites')}>Add to Favorites</Button>
+                    <div className="overlay"></div>
+                </div>
+                    <Button onClick={() => removeFave('Remove from Favorites')}>Remove from Favorites</Button>
                 <h2>{recipe.title}</h2>
                 <img src={recipe.image} alt={recipe.title} />
             </div>
             <Info>
-                <div>
-                    <div className="buttonContainer">
-                        <Button onClick={() => addFave('Add to Favorites')}>Add to Favorites</Button>
-                        <div className="overlay"></div>
-                    </div>
-                    <Button onClick={() => removeFave('Remove from Favorites')}>Remove from Favorites</Button>
-                    <Button className={active === 'Ingredients' ? 'active' : ''} onClick={() => setActive('Ingredients')}>Ingredients</Button>
-                    <Button className={active === 'Instructions' ? 'active' : ''} onClick={() => setActive('Instructions')}>Instructions</Button>
-                </div>
+                <Button className={active === 'Ingredients' ? 'active' : ''} onClick={() => setActive('Ingredients')}>Ingredients</Button>
+                <Button className={active === 'Instructions' ? 'active' : ''} onClick={() => setActive('Instructions')}>Instructions</Button>
                 {/* <h3 dangerouslySetInnerHTML={{__html: recipe.summary}}></h3> */}
                 {/* <h3 dangerouslySetInnerHTML={{__html: recipe.instructions}}></h3> */}
                 <div>
@@ -102,8 +100,8 @@ function Recipe() {
 }
 
 const RecipeWrapper = styled.div`
-    margin-top: 10rem;
-    margin-bottom: 5rem;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
     display: flex;
     .active{
         background-color: linear-gradient(35deg, #FFC0B9, #FF8474);
@@ -126,7 +124,7 @@ const Button = styled.div`
     color: #A3A0CB;
     background: #FFF7EE;
     border: 2px solid #FF8474;
-    margin: 2rem 0 2rem;
+    margin: 2rem 4rem 2rem;
     font-weight: 600;
 `
 
@@ -135,6 +133,7 @@ const Info = styled.div`
     height: auto;
     display: block;
     margin-left: 10rem;
+    
     buttonContainer = {
         position: relative;
         transition: transform 0.2s;
