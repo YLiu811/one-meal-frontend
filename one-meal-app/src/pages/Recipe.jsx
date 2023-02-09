@@ -1,8 +1,9 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
 
 function Recipe() {
     console.log("single recipe page is called")
@@ -25,52 +26,60 @@ function Recipe() {
         getRecipe();
     }, [params.id]);
     
-    const [favorites, setFavorites] = useState([])
-    const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+    // const [favorites, setFavorites] = useState([])
+    // const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
-    const addFave = (recipe) => {
-        console.log('add to fave clicked')
-        axios.post(`${REACT_APP_BACKEND_URL}/favorites`, recipe)
-        .then((response)=>{
-        const newFaves = [...favorites];
-        const newFaveJSON={
-            ...recipe,
-            "userId": response.data.id
-        }
-        newFaves.push(newFaveJSON);
-        setFavorites(newFaves); //this method does not require a .get request; we are pushing the Fave data to the Faves list and using the setter to trigger a rerender.
-        })
-        .catch((error)=>{
-        console.log(error);
-        });
-    }
+    // const addFave = (recipe) => {
+    //     console.log('add to fave clicked')
+    //     axios.post(`${REACT_APP_BACKEND_URL}/favorites`, recipe)
+    //     .then((response)=>{
+    //     const newFaves = [...favorites];
+    //     const newFaveJSON={
+    //         ...recipe,
+    //         "userId": response.data.id
+    //     }
+    //     newFaves.push(newFaveJSON);
+    //     setFavorites(newFaves); //this method does not require a .get request; we are pushing the Fave data to the Faves list and using the setter to trigger a rerender.
+    //     })
+    //     .catch((error)=>{
+    //     console.log(error);
+    //     });
+    // }
     
-    const removeFave = (faveId) => {
-        console.log('remove fave clicked')
-        axios
-        .delete(`${REACT_APP_BACKEND_URL}/favorites/${faveId}`)
-        .then(() => {
-            const newFaves = [];
-            for (const fave of favorites) {
-            if (fave.id !== faveId) {
-                newFaves.push(fave);
-            }
-        }
-        setFavorites(newFaves);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    }
+    // const removeFave = (faveId) => {
+    //     console.log('remove fave clicked')
+    //     axios
+    //     .delete(`${REACT_APP_BACKEND_URL}/favorites/${faveId}`)
+    //     .then(() => {
+    //         const newFaves = [];
+    //         for (const fave of favorites) {
+    //         if (fave.id !== faveId) {
+    //             newFaves.push(fave);
+    //         }
+    //     }
+    //     setFavorites(newFaves);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
+    // }
+
+    const { favorites, addToFave, removeFave } = useAppContext();
+    console.log(`favorites: ${favorites}`);
+    const favoritesCheck = (id) => {
+        const found = favorites.some((recipe) => recipe.id === id);
+        return found;
+    };
 
     return (
         <RecipeWrapper>
             <div>
-                <div className="buttonContainer">
-                    <Button onClick={() => addFave('Add to Favorites')}>Add to Favorites</Button>
-                    <div className="overlay"></div>
+                <div>
+                {favoritesCheck(recipe.id) ? (
+                    <Button onClick={() => removeFave(recipe.id)}>Remove from Favorites</Button>
+                ) : (
+                    <Button onClick={() => addToFave(recipe)}>Add to Favorites</Button>)}
                 </div>
-                    <Button onClick={() => removeFave('Remove from Favorites')}>Remove from Favorites</Button>
                 <h2>{recipe.title}</h2>
                 <img src={recipe.image} alt={recipe.title} />
             </div>
@@ -107,6 +116,11 @@ const RecipeWrapper = styled.div`
     .active{
         background-color: linear-gradient(35deg, #FFC0B9, #FF8474);
         color: #8FDF83;
+    }
+    h2 img{
+        margin-left: 2rem;
+        text-align: center;
+        align-items: center;
     }
     h3{
         margin-bottom: 2rem;

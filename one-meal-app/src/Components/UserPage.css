@@ -19,10 +19,10 @@ section {
     
 form {
     width: 100%;
-    max-width: 420px;
+    /* max-width: 420px; */
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+    align-items: center;
     justify-content: space-around;
     flex-grow: 1;
     padding-bottom: 1rem;

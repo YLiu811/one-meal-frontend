@@ -11,21 +11,22 @@ function Searched() {
     const params = useParams();
     
     const getResult = async (keyword) => {
-        // const checkRecipe = localStorage.getItem('searchedFood');
-        // console.log(checkRecipe);
-        // if (checkRecipe) {
-        //     setSearchedFood(JSON.parse(checkRecipe));
+        // const checkSearched = localStorage.getItem('searched');
+        // if (checkSearched) {
+        //     setSearchedFood(JSON.parse(checkSearched));
         // } else {
-        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&query=${keyword}&number=18`)
+        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&query=${keyword}&number=20`)
         const res = await api.json();
-        // localStorage.setItem('searchedFood', JSON.stringify(res.recipes))
         setSearchedFood(res.results);
-        console.log(res.results);
+        console.log(`res.results: ${res.results}`);
     };
-    
+// };
     useEffect(() => {
         getResult(params.input);
     }, [params.input]);
+
+    console.log(searchedFood);
+    localStorage.setItem('searched', JSON.stringify(searchedFood))
 
     return (
         <div>
@@ -54,7 +55,7 @@ function Searched() {
 }
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(8rem, 0.65fr));
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 0.65fr));
     grid-gap: 3rem;
     margin-left: 0;
     padding-left: 0;

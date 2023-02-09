@@ -34,7 +34,7 @@ const FormStyle = styled.form`
     }
     
     input {
-        width: 82%;
+        width: 100%;
         border: none;
         background: linear-gradient(-35deg, #FFC0B9, #FF8474);
         font-size: 1.6rem;
@@ -46,8 +46,8 @@ const FormStyle = styled.form`
     }
     svg {
         position: absolute;
-        top: 30%;
-        left: 4%;
+        top: 26%;
+        left: 2%;
         transform: translate(100%, -50%)
         color: #F0F7EF;
     }
