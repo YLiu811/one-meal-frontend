@@ -18,7 +18,7 @@ function Popular() {
         // if (checkPop) {
         //     setPopular(JSON.parse(checkPop));
         // } else {
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&number=24`)
+            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=3cda38ab716948748f1acbd747c80736&number=24`)
             const res = await api.json();
             localStorage.setItem('popular', JSON.stringify(res.recipes))
             setPopular(res.recipes);
@@ -69,7 +69,6 @@ function Popular() {
         overflow: hidden;
         position: relative;
         padding: 1rem;
-
         img{
             border-radius: 2rem;
             position: absolute;

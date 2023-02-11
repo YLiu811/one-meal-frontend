@@ -15,7 +15,7 @@ function Searched() {
         // if (checkSearched) {
         //     setSearchedFood(JSON.parse(checkSearched));
         // } else {
-        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=b7a6c9d38b904685a82e32c6e9ebc999&query=${keyword}&number=20`)
+        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=3cda38ab716948748f1acbd747c80736&query=${keyword}&number=20`)
         const res = await api.json();
         setSearchedFood(res.results);
         console.log(`res.results: ${res.results}`);

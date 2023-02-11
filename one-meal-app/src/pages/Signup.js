@@ -9,11 +9,12 @@ export const Signup = (props) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/signup`, {
-      name,
-      email,
-      password,
-    })
+    axios
+      .post(`${process.env.REACT_APP_BACKEND_URL}/user/signup`, {
+        name,
+        email,
+        password,
+      })
       .then((response) => {
         console.log(response);
         props.setUser(response.data);
@@ -33,7 +34,7 @@ export const Signup = (props) => {
             type="text"
             name="name"
             value={name}
-            placeholder="Choose Your User Name"
+            placeholder="Input User Name"
             onChange={(e) => {
               setName(e.target.value);
             }}

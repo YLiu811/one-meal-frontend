@@ -13,17 +13,25 @@ function Recipe() {
     const [recipe, setRecipe] = useState({});
     const [active, setActive] = useState('Ingredients');
 
-    const getRecipe = async () => {
-        const api = await fetch(`${URL}${params.id}/information?apiKey=b7a6c9d38b904685a82e32c6e9ebc999`)
-        const res = await api.json();
+    // const getRecipe = async () => {
+    //     const api = await fetch(`${URL}${params.id}/information?apiKey=3cda38ab716948748f1acbd747c80736`)
+    //     const res = await api.json();
+    //     // console.log(res);
+    //     setRecipe(res);
+    //     console.log(res.summary);
+    //     console.log(res.instructions);
+    // };
+
+    useEffect(() => {
+        function getRecipe(){
+        const api = fetch(`${URL}${params.id}/information?apiKey=3cda38ab716948748f1acbd747c80736`)
+        const res = api.json();
         // console.log(res);
         setRecipe(res);
         console.log(res.summary);
         console.log(res.instructions);
-    };
-
-    useEffect(() => {
-        getRecipe();
+       };
+       getRecipe()
     }, [params.id]);
     
     // const [favorites, setFavorites] = useState([])

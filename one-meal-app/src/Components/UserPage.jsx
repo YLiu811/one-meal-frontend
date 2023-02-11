@@ -10,6 +10,7 @@ import Home from "../pages/Home";
 import Pages from "../pages/Pages";
 import Searched from "../pages/Searched";
 import Recipe from "../pages/Recipe";
+import Favorite from './Favorite';
 
 function UserPage() {
   console.log(process.env.REACT_APP_API_KEY)
@@ -19,30 +20,27 @@ function UserPage() {
     const userId = localStorage.getItem("userId");
     if (userId) {
       axios
-        .get(`${process.env.REACT_APP_BACKEND_URL}/user/${userId}`)
+        .get(`${process.env.REACT_APP_BACKEND_URL}/user/${userId}`,{headers:{
+          Authorization:userId
+        }})
         .then((response) => {
           console.log(response);
-          const usersAPIResCopy = response.data.map((user) => {
-            return {
-              ...user,
-            };
-          });
-          setUser(usersAPIResCopy);
+          setUser(response.data.user)
         })
         .catch((error) => {
           console.log(error);
         });
     }
   };
-  useEffect(fetchUser, []);
+  useEffect(fetchUser,[]);
   
   return (
     <div>
+      {localStorage.getItem("userId") ? (<h1>Hi {user.email}</h1>):(<h1>Hi please join us</h1>)}
         <div>
-          <h1> Hi {user.name} </h1>
           <NavBar className='nav' userProp={user} setUser={setUser} />
           <Routes>
-            <Route path="*" element={<Login userProp={user} setUser={setUser} />} />
+            {/* <Route path="*" element={<Login userProp={user} setUser={setUser} />} /> */}
             <Route
               path="/home"
               element={<Home userProp={user} setUser={setUser} />}
@@ -51,6 +49,7 @@ function UserPage() {
               path="/pages"
               element={<Pages userProp={user} setUser={setUser} />}
             />
+            <Route path='/favorite'element={<Favorite/>}/>
             <Route path="/searched/:input" element={<Searched />} />
             <Route path ="/recipe/:id" element={<Recipe />} />
             <Route
