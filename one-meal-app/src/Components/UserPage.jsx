@@ -10,7 +10,8 @@ import Home from "../pages/Home";
 import Pages from "../pages/Pages";
 import Searched from "../pages/Searched";
 import Recipe from "../pages/Recipe";
-import Favorite from './Favorite';
+// import Favorite from './Favorite';
+import FavoritesList from '../pages/FavoritesList';
 
 function UserPage() {
   console.log(process.env.REACT_APP_API_KEY)
@@ -49,7 +50,7 @@ function UserPage() {
               path="/pages"
               element={<Pages userProp={user} setUser={setUser} />}
             />
-            <Route path='/favorite'element={<Favorite/>}/>
+            <Route path='/favoritesList'element={<FavoritesList/>}/>
             <Route path="/searched/:input" element={<Searched />} />
             <Route path ="/recipe/:id" element={<Recipe />} />
             <Route

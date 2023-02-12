@@ -11,7 +11,7 @@ const NavBar = (props) => {
           {/* <h1>Hi! {props.userProp.email} </h1> */}
           <div className="navbar">
             <span>
-              <Link to="/Favorite">My Favorites</Link>
+              <Link to="/FavoritesList">My Favorites</Link>
             </span>
             <span>
               <Link to="/home">Home</Link>

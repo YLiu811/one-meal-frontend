@@ -1,5 +1,6 @@
 import React from 'react'
 // import { Link } from 'react-router-dom';
+// import axios from 'axios';
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -9,13 +10,18 @@ function Searched() {
     console.log("searched page is called")
     const [searchedFood, setSearchedFood] = useState([]);
     const params = useParams();
-    
+
+    // const [title,setTitle] = useState('')
+    // const [image,setImage] = useState('')
+    // const [id,setId] = useState('')
+
+
     const getResult = async (keyword) => {
         // const checkSearched = localStorage.getItem('searched');
         // if (checkSearched) {
         //     setSearchedFood(JSON.parse(checkSearched));
         // } else {
-        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=3cda38ab716948748f1acbd747c80736&query=${keyword}&number=20`)
+        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=e7fc2ae2a7dc4c49b9aaf782c9334864&query=${keyword}&number=20`)
         const res = await api.json();
         setSearchedFood(res.results);
         console.log(`res.results: ${res.results}`);
@@ -27,7 +33,23 @@ function Searched() {
 
     console.log(searchedFood);
     localStorage.setItem('searched', JSON.stringify(searchedFood))
-
+    // add favorit recipe into DB
+    // const addRecipe = async(i)=>{
+    //     let userId = localStorage.getItem('userId')
+    //     console.log(i)
+    //     setId(i.id)
+    //     setTitle(i.title)
+    //     setImage(i.image)
+        
+    //     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/favorites`,{id:i.id,title:i.title,image:i.image,userId})
+    //     .then((response)=>{
+    //         console.log(response)
+    //         alert('You Add One recipe') 
+    //     }).catch((e)=>{
+    //         console.log(e)
+    //     })
+    // }
+    
     return (
         <div>
             <Title>Recommended Recipes</Title>
@@ -39,7 +61,7 @@ function Searched() {
                             <div className='container'>
                                 <div className='overlay'>
                                     <h4>{recipe.title}</h4>
-                                    <Favorite />
+                                    <Favorite recipe={recipe} searchedFood={searchedFood}/>
                                 </div>
                             </div>
                             <a href={`/recipe/${recipe.id}`}>

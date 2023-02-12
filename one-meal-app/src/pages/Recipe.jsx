@@ -13,26 +13,28 @@ function Recipe() {
     const [recipe, setRecipe] = useState({});
     const [active, setActive] = useState('Ingredients');
 
-    // const getRecipe = async () => {
-    //     const api = await fetch(`${URL}${params.id}/information?apiKey=3cda38ab716948748f1acbd747c80736`)
-    //     const res = await api.json();
-    //     // console.log(res);
-    //     setRecipe(res);
-    //     console.log(res.summary);
-    //     console.log(res.instructions);
-    // };
-
-    useEffect(() => {
-        function getRecipe(){
-        const api = fetch(`${URL}${params.id}/information?apiKey=3cda38ab716948748f1acbd747c80736`)
-        const res = api.json();
+    const getRecipe = async () => {
+        const api = await fetch(`${URL}${params.id}/information?apiKey=e7fc2ae2a7dc4c49b9aaf782c9334864`)
+        const res = await api.json();
         // console.log(res);
         setRecipe(res);
         console.log(res.summary);
         console.log(res.instructions);
-       };
-       getRecipe()
+    };
+    useEffect(() => {
+        getRecipe();
     }, [params.id]);
+    // useEffect(() => {
+    //     function getRecipe(){
+    //     const res = fetch(`${URL}${params.id}/information?apiKey=e7fc2ae2a7dc4c49b9aaf782c9334864`)
+    //     // const res = api.json();
+    //     console.log(params.id);
+    //     setRecipe(res);
+    //     console.log(res.summary);
+    //     console.log(res.instructions);
+    //    };
+    //    getRecipe()
+    // }, [params.id]);
     
     // const [favorites, setFavorites] = useState([])
     // const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -82,12 +84,12 @@ function Recipe() {
     return (
         <RecipeWrapper>
             <div>
-                <div>
+                {/* <div>
                 {favoritesCheck(recipe.id) ? (
                     <Button onClick={() => removeFave(recipe.id)}>Remove from Favorites</Button>
                 ) : (
                     <Button onClick={() => addToFave(recipe)}>Add to Favorites</Button>)}
-                </div>
+                </div> */}
                 <h2>{recipe.title}</h2>
                 <img src={recipe.image} alt={recipe.title} />
             </div>

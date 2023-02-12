@@ -18,7 +18,7 @@ function Popular() {
         // if (checkPop) {
         //     setPopular(JSON.parse(checkPop));
         // } else {
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=3cda38ab716948748f1acbd747c80736&number=24`)
+            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=51d0e725a5f9407891c4892e29d1c70a&number=24`)
             const res = await api.json();
             localStorage.setItem('popular', JSON.stringify(res.recipes))
             setPopular(res.recipes);
@@ -26,6 +26,7 @@ function Popular() {
         }
         // console.log(`popular: ${popular}`);
     // };
+
 
     return (
         <div>
@@ -39,11 +40,11 @@ function Popular() {
                     gap: '3rem',
                     rewind: true,
                 }}>
-                    {popular.map((recipe) => {
+                    {popular?.map((recipe) => {
                         return(
                             <SplideSlide key={recipe.id}>
                                 <Card>
-                                    <Favorite />
+                                    <Favorite recipe={recipe}/>
                                         <Link to={`/recipe/${recipe.id}`}>
                                         <p>{recipe.title}</p>
                                         <img src={recipe.image} alt={recipe.title} />
