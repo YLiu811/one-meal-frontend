@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
-import FavoritesList from '../pages/FavoritesList';
+// import FavoritesList from '../pages/FavoritesList';
 // import Favorites from '../pages/FavoritesList';
 // import Searched from '../pages/Searched';
 // import { useParams } from "react-router-dom";
@@ -14,15 +14,15 @@ const Favorite = (props) => {
 
     const [title,setTitle] = useState('')
     const [image,setImage] = useState('')
-    const [id,setId] = useState('')
+    const [recipe_id,setRecipe_id] = useState('')
     const addRecipe = async(i)=>{
         let userId = localStorage.getItem('userId')
         console.log(i)
-        setId(i.id)
+        setRecipe_id(i.recipe_id)
         setTitle(i.title)
         setImage(i.image)
         
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/favorites/${userId}`,{title:i.title,image:i.image,userId})
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/favorites/${userId}`,{title:i.title,image:i.image,recipe_id:i.id,userId})
         .then((response)=>{
             console.log(response)
         }).catch((e)=>{
@@ -47,7 +47,6 @@ const Favorite = (props) => {
                 {/* <FaHeart onClick={() => addToFave}></FaHeart> */}
                 <span onClick={()=>{clickHeart(props.recipe); addLike(true);addRecipe(props.recipe)}}>{HeartColorChange}</span>
             </div>
-            {/* <FavoritesList title={title} id={id} image={image}/> */}
         </div>
     )
 }

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+
+// import Recipe from "./Recipe";
 const FavoritesList = () => {
   const [favList, setFavList] = useState([]);
   // get favorits from DB
@@ -30,7 +32,7 @@ const FavoritesList = () => {
       .then(() => {
         const newFavsList = [];
         for (const fav of favList) {
-          if (fav.favorit_id !== favId) {
+          if (fav.id !== favId) {
             newFavsList.push(fav);
           }
         }
@@ -50,13 +52,15 @@ const FavoritesList = () => {
             <p>
               {fav.title}
               <br />
-              <img src={fav.image} />
+              <a href={`/recipe/${fav.recipe_id}`}>
+                <img src={fav.image} alt={fav.title} />
+              </a>
               <br />
             </p>
             <button
               className="deletebook"
               onClick={() => {
-                deletefav(fav.favorit_id);
+                deletefav(fav.id);
               }}
             >
               Delete

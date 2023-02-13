@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Favorite from '../Components/Favorite';
+// import FavoritesList from './FavoritesList';
 
 function Searched() {
     console.log("searched page is called")

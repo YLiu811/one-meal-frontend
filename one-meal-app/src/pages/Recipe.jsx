@@ -1,9 +1,10 @@
 import React from "react";
 // import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useAppContext } from "../context/appContext";
+// import { useAppContext } from "../context/appContext";
+
 
 function Recipe() {
     console.log("single recipe page is called")
@@ -24,6 +25,13 @@ function Recipe() {
     useEffect(() => {
         getRecipe();
     }, [params.id]);
+
+    const navigate = useNavigate();
+    // const GoBackButton = async()=>{
+    // const history = useHistory();
+    // const handleGoBack = () => {
+    // history.goBack();
+    // } 
     // useEffect(() => {
     //     function getRecipe(){
     //     const res = fetch(`${URL}${params.id}/information?apiKey=e7fc2ae2a7dc4c49b9aaf782c9334864`)
@@ -74,12 +82,14 @@ function Recipe() {
     //     });
     // }
 
-    const { favorites, addToFave, removeFave } = useAppContext();
-    console.log(`favorites: ${favorites}`);
-    const favoritesCheck = (id) => {
-        const found = favorites.some((recipe) => recipe.id === id);
-        return found;
-    };
+    // const {} = useAppContext();
+    // favorites, addToFave, removeFave 
+    // console.log(`favorites: ${favorites}`);
+    // const favoritesCheck = (id) => {
+    //     const found = favorites.some((recipe) => recipe.id === id);
+    //     return found;
+    // };
+
 
     return (
         <RecipeWrapper>
@@ -90,6 +100,7 @@ function Recipe() {
                 ) : (
                     <Button onClick={() => addToFave(recipe)}>Add to Favorites</Button>)}
                 </div> */}
+                <button onClick={() => navigate(-1)}>Go back</button>
                 <h2>{recipe.title}</h2>
                 <img src={recipe.image} alt={recipe.title} />
             </div>
