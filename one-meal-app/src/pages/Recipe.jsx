@@ -6,6 +6,7 @@ import styled from "styled-components";
 // import { useAppContext } from "../context/appContext";
 
 
+
 function Recipe() {
     console.log("single recipe page is called")
     const URL = "https://api.spoonacular.com/recipes/";
@@ -23,7 +24,8 @@ function Recipe() {
         console.log(res.instructions);
     };
     useEffect(() => {
-        getRecipe();
+        getRecipe(); 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [params.id]);
 
     const navigate = useNavigate();
