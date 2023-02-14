@@ -24,8 +24,8 @@ function Popular() {
             setPopular(res.recipes);
             console.log(`res.recipes: ${res.recipes}`);
         }
-        // console.log(`popular: ${popular}`);
-    // };
+        console.log(`popular: ${popular}`);
+    };
 
 
     return (

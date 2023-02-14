@@ -32,25 +32,9 @@ function Searched() {
         getResult(params.input);
     }, [params.input]);
 
-    console.log(searchedFood);
-    localStorage.setItem('searched', JSON.stringify(searchedFood))
-    // add favorit recipe into DB
-    // const addRecipe = async(i)=>{
-    //     let userId = localStorage.getItem('userId')
-    //     console.log(i)
-    //     setId(i.id)
-    //     setTitle(i.title)
-    //     setImage(i.image)
-        
-    //     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/favorites`,{id:i.id,title:i.title,image:i.image,userId})
-    //     .then((response)=>{
-    //         console.log(response)
-    //         alert('You Add One recipe') 
-    //     }).catch((e)=>{
-    //         console.log(e)
-    //     })
-    // }
-    
+    // console.log(searchedFood);
+    // localStorage.setItem('searched', JSON.stringify(searchedFood))
+
     return (
         <div>
             <Title>Recommended Recipes</Title>
