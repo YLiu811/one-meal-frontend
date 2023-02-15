@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 export const Signup = (props) => {
   const [name, setName] = useState("");
@@ -29,51 +30,58 @@ export const Signup = (props) => {
       });
   };
   return (
-    <>
-      {success ? (
-        <section>
-          <p>
-            <a href={"/home"}>Welcome! Visit Home</a>
-          </p>
-        </section>
-      ) : (
-        <div>
+    <div>
+      <>
+        <Helmet>
+          <title>OneMeal | SignUp</title>
+        </Helmet>
+      </>
+      <>
+        {success ? (
           <section>
-            <form onSubmit={submitForm}>
-              <h2>Sign Up</h2>
-              <input
-                type="text"
-                name="name"
-                value={name}
-                placeholder="Input User Name"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
-              <input
-                type="text"
-                name="email"
-                value={email}
-                placeholder="Register with Your Email"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-              <input
-                type="text"
-                name="password"
-                value={password}
-                placeholder="Type your password"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-              <input type="submit" value="Sign Up" />
-            </form>
+            <p>
+              <a href={"/home"}>Welcome! Visit Home</a>
+            </p>
           </section>
-        </div>
-      )}
-    </>
+        ) : (
+          <div>
+            <section>
+              <form onSubmit={submitForm}>
+                <h2>Sign Up</h2>
+                <input
+                  type="text"
+                  name="name"
+                  value={name}
+                  placeholder="Input User Name"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                />
+                <input
+                  type="text"
+                  name="email"
+                  value={email}
+                  placeholder="Register with Your Email"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+                <input
+                  type="text"
+                  name="password"
+                  value={password}
+                  placeholder="Type your password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+                <input type="submit" value="Sign Up" />
+              </form>
+            </section>
+          </div>
+        )}
+      </>
+    </div>
   );
 };
 export default Signup;

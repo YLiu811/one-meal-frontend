@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { Helmet } from "react-helmet";
+// import Favorite from "../Components/Favorite";
 
 // import Recipe from "./Recipe";
 const FavoritesList = () => {
@@ -46,6 +48,11 @@ const FavoritesList = () => {
 
   return (
     <div>
+      <>
+        <Helmet>
+          <title>OneMeal | Favorite</title>
+        </Helmet>
+      </>
       <Title>Your Favorites</Title>
       <br />
       <Grid>
@@ -53,16 +60,14 @@ const FavoritesList = () => {
           return (
             <Card>
               <div className="list" key={i}>
-                <p>
-                  {fav.title}
-                  <br />
-                  <a href={`/recipe/${fav.recipe_id}`}>
-                    <img src={fav.image} alt={fav.title} />
-                  </a>
-                  <br />
-                </p>
+                <h4>{fav.title}</h4>
+                <br />
+                <a href={`/recipe/${fav.recipe_id}`}>
+                  <img src={fav.image} alt={fav.title} />
+                </a>
+                <br />
                 <button
-                  className="deletebook"
+                  className="delete"
                   onClick={() => {
                     deletefav(fav.id);
                   }}
@@ -77,6 +82,7 @@ const FavoritesList = () => {
     </div>
   );
 };
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 0.65fr));
@@ -87,6 +93,7 @@ const Grid = styled.div`
 const Title = styled.h2`
   display: inline-block;
 `;
+
 const Card = styled.div`
     position: relative;
     img {

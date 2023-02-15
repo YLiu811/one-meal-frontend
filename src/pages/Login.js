@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 export const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -30,45 +31,52 @@ export const Login = (props) => {
       });
   };
   return (
-    <>
-      {success ? (
-        <section>
-          <h1>You are logged in!</h1>
-          <br />
-          <p>
-            <a href={"/home"}>Welcome! Visit Home</a>
-          </p>
-        </section>
-      ) : (
-        <div>
+    <div>
+      <>
+        <Helmet>
+          <title>OneMeal | LogIn</title>
+        </Helmet>
+      </>
+      <>
+        {success ? (
           <section>
-            <form onSubmit={submitForm}>
-              <h1>Log In</h1>
-              <input
-                type="text"
-                name="email"
-                value={email}
-                required
-                placeholder="Input your Email"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-              <input
-                type="text"
-                name="password"
-                value={password}
-                placeholder="Type your password"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-              <input type="submit" value="Log In" />
-            </form>
+            <h1>You are logged in!</h1>
+            <br />
+            <p>
+              <a href={"/home"}>Welcome! Visit Home</a>
+            </p>
           </section>
-        </div>
-      )}
-    </>
+        ) : (
+          <div>
+            <section>
+              <form onSubmit={submitForm}>
+                <h1>Log In</h1>
+                <input
+                  type="text"
+                  name="email"
+                  value={email}
+                  required
+                  placeholder="Input your Email"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+                <input
+                  type="text"
+                  name="password"
+                  value={password}
+                  placeholder="Type your password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+                <input type="submit" value="Log In" />
+              </form>
+            </section>
+          </div>
+        )}
+      </>
+    </div>
   );
 };
 export default Login;

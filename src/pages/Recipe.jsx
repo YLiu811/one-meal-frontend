@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Helmet } from "react-helmet";
 // import { useAppContext } from "../context/appContext";
 
 
@@ -96,6 +97,9 @@ function Recipe() {
     return (
         <RecipeWrapper>
             <div>
+                <Helmet>
+                <title>OneMeal | Recipe</title>
+                </Helmet>
                 {/* <div>
                 {favoritesCheck(recipe.id) ? (
                     <Button onClick={() => removeFave(recipe.id)}>Remove from Favorites</Button>
