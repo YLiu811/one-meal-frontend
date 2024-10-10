@@ -1,2 +1,8 @@
-node_modules
-node_modules
+# Object file
+*.o
+
+# Ada Library Information
+*.ali
+
+build/
+node_modules/
